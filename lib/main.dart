@@ -98,7 +98,7 @@ class _BatteryLevelPageState extends State<BatteryLevelPage> {
               ),
             ),
             Text(
-              " $_batteryLevel %",
+              " $_batteryLevel %", //battery level display
               style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.bold,

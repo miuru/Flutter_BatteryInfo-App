@@ -18,8 +18,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
-        seconds: 5,
         navigateAfterSeconds: new BatteryLevelPage(),
+        seconds: 3,
         title: new Text(
           'Welcome to My Battery App',
           style: new TextStyle(
@@ -38,5 +38,6 @@ class _MyAppState extends State<MyApp> {
         photoSize: 120.0,
         onClick: () => print("Flutter Battery"),
         loaderColor: Colors.deepPurpleAccent);
+
   }
 }

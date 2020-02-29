@@ -97,8 +97,11 @@ class _BatteryLevelPageState extends State<BatteryLevelPage> {
                     : Container(),
               ),
             ),
+            SizedBox(
+              height: 25.0,
+            ),
             Text(
-              " $_batteryLevel %", //battery level display
+              "Battery Level : $_batteryLevel %", //battery level display
               style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.bold,
@@ -108,7 +111,7 @@ class _BatteryLevelPageState extends State<BatteryLevelPage> {
               height: 25.0,
             ),
             Text(
-              "$_batteryState",
+              printText(_batteryState),
               style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.bold,
@@ -118,6 +121,16 @@ class _BatteryLevelPageState extends State<BatteryLevelPage> {
         ),
       ),
     );
+  }
+}
+
+String printText(text) {
+  if(text == BatteryState.charging ){
+    return "Battery State : Charging";
+  }
+  else{
+    print(text);
+    return "Battery State : Discharging";
   }
 }
 
@@ -179,4 +192,5 @@ class _BatteryLevelPainter extends CustomPainter {
     return old._batteryLevel != _batteryLevel ||
         old._batteryState != _batteryState;
   }
+
 }

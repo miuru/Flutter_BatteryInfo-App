@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "358396177064",
+    "firebase_url": "https://batterystateapp.firebaseio.com",
+    "project_id": "batterystateapp",
+    "storage_bucket": "batterystateapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358396177064:android:aeaaaf46c38c8f1569f09d",
+        "android_client_info": {
+          "package_name": "com.batteryStat97"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358396177064-2fhdi4a4sr0s9dson8e45srgg7mhihin.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBw8Q-ICrc0lNnv8SvH4I9CQ8E2IHQOiHM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358396177064-2fhdi4a4sr0s9dson8e45srgg7mhihin.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

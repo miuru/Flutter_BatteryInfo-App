@@ -1,4 +1,4 @@
-package com.tutorialspoint.fluuterapp.battery_info
+package com.batteryStat97
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

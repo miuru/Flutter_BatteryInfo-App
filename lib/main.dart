@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:battery/battery.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:intl/intl.dart';
+
+final databaseReference = FirebaseDatabase.instance.reference();
 
 void main() => runApp(MyApp());
 
@@ -7,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Battery Display',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -117,6 +122,33 @@ class _BatteryLevelPageState extends State<BatteryLevelPage> {
                   fontWeight: FontWeight.bold,
                   fontSize: 28.0),
             ),
+            SizedBox(
+              height: 85.0,
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SecondRoute()),
+                );
+              },
+              textColor: Colors.white,
+              padding: const EdgeInsets.all(0.0),
+              child: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: <Color>[
+                      Color(0xFF0D47A1),
+                      Color(0xFF1976D2),
+                      Color(0xFF42A5F5),
+                    ],
+                  ),
+                ),
+                padding: const EdgeInsets.all(10.0),
+                child: const Text('Battery usage of past 10 days',
+                    style: TextStyle(fontSize: 20)),
+              ),
+            ),
           ],
         ),
       ),
@@ -124,16 +156,38 @@ class _BatteryLevelPageState extends State<BatteryLevelPage> {
   }
 }
 
+//Returns the Battery State
 String printText(text) {
-  if(text == BatteryState.charging ){
+  if (text == BatteryState.charging) {
     return "Battery State : Charging";
-  }
-  else{
+  } else {
     print(text);
     return "Battery State : Discharging";
   }
 }
 
+//Retrieve all data from firebase
+getData() {
+  databaseReference.once().then((DataSnapshot snapshot) {
+    final String data = snapshot.value.toString();
+    print(data);
+
+    return data;
+  });
+}
+
+//Past records Screen // need to  display the data
+class SecondRoute extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Second Route"),
+        ),
+        body: Column(children: <Widget>[]));
+  }
+}
+
+//Battery level indicator and state monitoring
 class _BatteryLevelPainter extends CustomPainter {
   final int _batteryLevel;
   final BatteryState _batteryState;
@@ -172,6 +226,7 @@ class _BatteryLevelPainter extends CustomPainter {
         0.0, 0.0, batteryRight * _batteryLevel / 100.0, size.height));
 
     Color indicatorColor;
+
     if (_batteryLevel < 15) {
       indicatorColor = Colors.red;
     } else if (_batteryLevel < 30) {
@@ -189,8 +244,21 @@ class _BatteryLevelPainter extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     final _BatteryLevelPainter old = oldDelegate as _BatteryLevelPainter;
+    var now = new DateTime.now();
+    var date = new DateFormat("yyyy-MM-dd hh:mm:ss").format(now);
+
+    if (_batteryState == BatteryState.charging) {
+      createRecord(_batteryLevel, date);
+    }
+
     return old._batteryLevel != _batteryLevel ||
         old._batteryState != _batteryState;
   }
 
+  void createRecord(batteryLevel, date) {
+    databaseReference
+        .child(date)
+        .set({'date ': date, 'battery %  ': batteryLevel});
+  }
 }
+

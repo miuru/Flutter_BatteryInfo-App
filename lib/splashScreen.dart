@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
               fontSize: 25.0,
               ),
         ),
-        image: Image.asset("images/batterySplash.png"),
+        image: Image.asset("images/batterysplash.jpg"),
         backgroundColor: Colors.black,
         styleTextUnderTheLoader: new TextStyle(
             fontSize: 45.0,

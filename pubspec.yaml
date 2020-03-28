@@ -31,6 +31,8 @@ dependencies:
   intl: ^0.15.8
   firebase_core: any
   firebase_auth: 0.15.5+2
+  cloud_firestore: ^0.13.0+1
+
 
 
 
@@ -51,7 +53,7 @@ flutter:
   uses-material-design: true
   assets:
     - images/background1.jpg
-    - images/batterySplash.png
+    - images/batterysplash.jpg
     - images/background.jpg
     - images/background3.png
 

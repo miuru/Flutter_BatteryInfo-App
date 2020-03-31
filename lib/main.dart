@@ -4,6 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:intl/intl.dart';
 import 'api.dart';
 import 'historyRecords.dart';
+import 'myAccount.dart';
 final databaseReference = FirebaseDatabase.instance.reference();
 
 void main() => runApp(MyApp());
@@ -60,9 +61,6 @@ class _BatteryLevelPageState extends State<BatteryLevelPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Battery Level"),
-      ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -80,7 +78,7 @@ class _BatteryLevelPageState extends State<BatteryLevelPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "My Battery App",
+                    "Battery App",
                     style: TextStyle(
                         color: Colors.redAccent,
                         fontWeight: FontWeight.bold,
@@ -126,7 +124,7 @@ class _BatteryLevelPageState extends State<BatteryLevelPage> {
                   fontSize: 28.0),
             ),
             SizedBox(
-              height: 85.0,
+              height: 185.0,
             ),
             RaisedButton(
               onPressed: () {
@@ -149,6 +147,33 @@ class _BatteryLevelPageState extends State<BatteryLevelPage> {
                 ),
                 padding: const EdgeInsets.all(10.0),
                 child: const Text('Battery usage of past 10 days',
+                    style: TextStyle(fontSize: 20)),
+              ),
+            ),
+            SizedBox(
+              height: 15.0,
+            ),
+              RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => FireBaseFireStoreDemo()),
+                );
+              },
+              textColor: Colors.white,
+              padding: const EdgeInsets.all(0.0),
+              child: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: <Color>[
+                      Color(0xFF0D47A1),
+                      Color(0xFF1976D2),
+                      Color(0xFF42A5F5),
+                    ],
+                  ),
+                ),
+                padding: const EdgeInsets.all(10.0),
+                child: const Text('                 My Account               ',
                     style: TextStyle(fontSize: 20)),
               ),
             ),
@@ -185,7 +210,7 @@ class _BatteryLevelPainter extends CustomPainter {
         PaintingStyle style = PaintingStyle.stroke}) {
       return Paint()
         ..color = color
-        ..strokeWidth = 1.0
+        ..strokeWidth = 3.0
         ..style = style;
     }
 

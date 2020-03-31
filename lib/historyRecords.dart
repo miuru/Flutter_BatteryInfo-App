@@ -5,17 +5,26 @@ import 'api.dart';
 
 class HistoryRecords extends StatelessWidget {
   Api api = new Api();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: Text('History Records')),
-      body: _buildBody(context),
-    );
+        appBar: AppBar(centerTitle: true, title: Text('History Records')),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("images/background3.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+
+          child: _buildBody(context),
+        ));
   }
 
   Widget _buildBody(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: api.getUsers(),
+      stream: api.getBatteryData(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return LinearProgressIndicator();
 
@@ -39,12 +48,19 @@ class HistoryRecords extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Container(
         decoration: BoxDecoration(
+          color: Colors.transparent,
           border: Border.all(color: Colors.grey),
           borderRadius: BorderRadius.circular(5.0),
         ),
+
         child: ListTile(
-          title: Text(record.date),
-          trailing: Text(record.battery),
+
+          title: Text(record.date,
+            style:TextStyle(color: Colors.white),
+          ),
+          trailing: Text(record.battery,
+            style:TextStyle(color: Colors.white),
+          ),
         ),
       ),
     );

@@ -23,21 +23,20 @@ class _MyAppState extends State<MyApp> {
         title: new Text(
           'Welcome to My Battery App',
           style: new TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.deepPurpleAccent,
-              fontSize: 25.0,
-              ),
+            fontWeight: FontWeight.bold,
+            color: Colors.deepPurpleAccent,
+            fontSize: 25.0,
+          ),
         ),
         image: Image.asset("images/batterysplash.jpg"),
         backgroundColor: Colors.black,
         styleTextUnderTheLoader: new TextStyle(
-            fontSize: 45.0,
-            color: Colors.deepPurpleAccent,
-            fontWeight: FontWeight.bold,
-           ),
+          fontSize: 45.0,
+          color: Colors.deepPurpleAccent,
+          fontWeight: FontWeight.bold,
+        ),
         photoSize: 120.0,
         onClick: () => print("Flutter Battery"),
         loaderColor: Colors.deepPurpleAccent);
-
   }
 }

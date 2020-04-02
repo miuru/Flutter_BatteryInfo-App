@@ -5,7 +5,7 @@ class Battery {
   String battery;
   DocumentReference reference;
 
-  Battery({this.date,this.battery});
+  Battery({this.date, this.battery});
 
   Battery.fromMap(Map<String, dynamic> map, {this.reference}) {
     date = map["date"];
@@ -16,6 +16,6 @@ class Battery {
       : this.fromMap(snapshot.data, reference: snapshot.reference);
 
   toJson() {
-    return {'date': date, 'battery':battery};
+    return {'date': date, 'battery': battery};
   }
 }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'user.dart';
-import 'api.dart';
+import '../models/user.dart';
+import '../api/api.dart';
 
 Api api = Api();
+User curUser = new User();
 
 class FireBaseFireStoreDemo extends StatefulWidget {
   FireBaseFireStoreDemo() : super();
@@ -17,12 +18,12 @@ class FireBaseFireStoreDemoState extends State<FireBaseFireStoreDemo> {
   bool showText = false;
   TextEditingController controller = TextEditingController();
   bool isEditing = false;
-  User curUser;
+  User user;
 
   add() {
     if (isEditing) {
       //Update
-      api.update(curUser, controller.text);
+      api.update(user, controller.text);
       setState(() {
         isEditing = false;
       });

@@ -1,7 +1,8 @@
-import 'package:battery_info/batteryInfo.dart';
+import 'package:battery_info/models/batteryInfo.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'batteryInfo.dart';
-import 'user.dart';
+import '../models/batteryInfo.dart';
+import '../models/user.dart';
+
 class Api {
   String collectionName = "Battery";
   String userCollectionName = 'User';
@@ -11,11 +12,15 @@ class Api {
     DateTime today = new DateTime.now();
     DateTime tenDaysAgo = today.subtract(new Duration(days: 10));
     print(tenDaysAgo);
-    return Firestore.instance.collection(collectionName).orderBy('date',descending: true).limit(10).snapshots();
+    return Firestore.instance
+        .collection(collectionName)
+        .orderBy('date', descending: true)
+        .limit(10)
+        .snapshots();
   }
 
-  addBattery(date,battery) {
-    Battery user = Battery(date: date , battery: battery);
+  addBattery(date, battery) {
+    Battery user = Battery(date: date, battery: battery);
     try {
       Firestore.instance.runTransaction((Transaction transaction) async {
         await Firestore.instance
@@ -27,8 +32,13 @@ class Api {
       print(e.toString());
     }
   }
+
   getUsers() {
-    var data = Firestore.instance.collection(userCollectionName).where('name',isEqualTo: 'miurus').limit(1).snapshots();
+    var data = Firestore.instance
+        .collection(userCollectionName)
+        .where('name', isEqualTo: 'miurus')
+        .limit(1)
+        .snapshots();
     return Firestore.instance.collection(userCollectionName).snapshots();
   }
 

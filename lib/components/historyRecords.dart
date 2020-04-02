@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'batteryInfo.dart';
-import 'api.dart';
+import '../api/api.dart';
 
 class HistoryRecords extends StatelessWidget {
   Api api = new Api();
@@ -17,7 +16,6 @@ class HistoryRecords extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-
           child: _buildBody(context),
         ));
   }
@@ -52,14 +50,14 @@ class HistoryRecords extends StatelessWidget {
           border: Border.all(color: Colors.grey),
           borderRadius: BorderRadius.circular(5.0),
         ),
-
         child: ListTile(
-
-          title: Text(record.date,
-            style:TextStyle(color: Colors.white),
+          title: Text(
+            record.date,
+            style: TextStyle(color: Colors.white),
           ),
-          trailing: Text(record.battery,
-            style:TextStyle(color: Colors.white),
+          trailing: Text(
+            record.battery,
+            style: TextStyle(color: Colors.white),
           ),
         ),
       ),
